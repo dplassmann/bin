@@ -1,5 +1,5 @@
 #!/bin/bash
-if git branch -q --all --contains $1 2>/dev/null | grep -q remotes/origin/master
+if git branch --all --contains $1 2>/dev/null | grep -q remotes/origin/master
 then
 	echo 'Deployed'
 	exit 0
