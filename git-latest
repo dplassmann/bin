@@ -1,0 +1,16 @@
+#!/bin/bash
+
+_usage() {
+    echo "Usage: git latest <branch>" 1>&2
+    exit 1
+}
+
+_latest() {
+	echo git merge-ff $1 origin/$1
+	git merge-ff $1 origin/$1
+}
+
+case $# in
+    1 ) _latest "$1";;
+    * ) _usage
+esac
