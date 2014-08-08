@@ -1,0 +1,13 @@
+#!/bin/bash
+
+flag="-d"
+
+while getopts "f" opt; do
+    case $opt in
+        f ) flag="-D";;
+        * ) ;;
+    esac
+done
+shift $((OPTIND-1))
+
+while read branch; do git branch $flag $branch; done

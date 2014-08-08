@@ -1,0 +1,4 @@
+#/bin/sh
+git log -1 --no-merges --first-parent
+item=$(git log -1 --no-merges --first-parent --pretty="%s" | cut -f1 -d"]")
+echo "$item]"

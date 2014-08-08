@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# print-item $1
+# print-item $1 | tr -d "\n" | clip
+
+item=$(git log -1 --no-merges --first-parent --pretty="%s" | cut -f1 -d"]")
+echo "$item]"
+git log -1 --no-merges --first-parent
+echo "$item]" | tr -d "\n" | clip
