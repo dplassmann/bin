@@ -1,0 +1,18 @@
+function git-idid() {
+        declare last=''
+ 
+        while [[ $# > 0 ]]; do
+                last="$last $1"
+                shift
+        done
+ 
+        declare suggestion="$($last 2>&1)"
+ 
+        declare intended=$(echo "$suggestion" | grep -A 1 'Did you mean' | tail -1)
+        declare typo=$(echo "$suggestion" | ack --output='$1' "git: \'(.+?)'" -1 --filter)
+        declare result=$(echo "$last" | sed "s/$typo/$intended/")
+ 
+        echo $result
+        $result
+}
+alias idid='git-idid $(history -p !!)'
